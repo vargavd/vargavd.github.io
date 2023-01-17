@@ -1,0 +1,53 @@
+<p-toolbar>
+  <div class="p-toolbar-group-left">
+    <a
+      routerLink="/"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="p-button-link"
+      icon="pi pi-home"
+      pButton
+      >Home</a
+    >
+
+    <a
+      routerLink="/projects"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="p-button-link"
+      icon="pi pi-table"
+      pButton
+      >Projects</a
+    >
+
+    <a
+      routerLink="/tasks"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="p-button-link"
+      icon="pi pi-list"
+      pButton
+    >
+      Tasks
+    </a>
+  </div>
+
+  <div class="p-toolbar-group-right">
+    <p-button
+      styleClass="mr-3 p-button-secondary"
+      icon="pi pi-sign-in"
+      label="Login"
+      *ngIf="!user.userName"
+      (onClick)="clickOnLogin()"
+    >
+    </p-button>
+
+    <p-splitButton
+      [label]="user.firstName"
+      icon="pi pi-user"
+      styleClass="mr-3 p-button-secondary"
+      *ngIf="user.userName"
+      [model]="userMenu"
+    ></p-splitButton>
+  </div>
+</p-toolbar>

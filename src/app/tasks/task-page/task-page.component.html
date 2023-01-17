@@ -1,0 +1,124 @@
+<div class="flex justify-content-between align-items-center mt-2">
+  <div class="flex justify-content-between align-items-center">
+    <h1>{{ editedTask.title }}</h1>
+
+    <i
+      class="pi pi-info-circle text-2xl text-primary cursor-pointer ml-2"
+      pTooltip="Saving is instantaneous"
+      tooltipPosition="bottom"
+    ></i>
+  </div>
+
+  <div class="flex justify-content-between align-items-center">
+    Project:
+    <a [routerLink]="['/projects', this.project.id]" class="ml-2 text-lg">
+      {{ project.title }}
+    </a>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="col-6">
+    <div class="field">
+      <label for="title" class="block">Title</label>
+      <input
+        type="text"
+        id="title"
+        pInputText
+        required
+        [(ngModel)]="editedTask.title"
+      />
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="field">
+      <label class="block">Status</label>
+      <p-dropdown [options]="taskStatuses" [(ngModel)]="editedTask.status">
+        <!-- SELECTED TEMPLATE -->
+        <ng-template pTemplate="selectedItem">
+          <app-status-indicator
+            [status]="editedTask.status"
+          ></app-status-indicator>
+        </ng-template>
+
+        <!-- OPTIOM TEMPLATE -->
+        <ng-template let-status pTemplate="item">
+          <app-status-indicator [status]="status"></app-status-indicator>
+        </ng-template>
+      </p-dropdown>
+    </div>
+  </div>
+</div>
+
+<div class="field">
+  <label>Description</label>
+  <textarea
+    pInputTextarea
+    [(ngModel)]="editedTask.description"
+    [style]="{ width: '100%' }"
+    rows="3"
+  ></textarea>
+</div>
+
+<div class="grid">
+  <div class="col-6">
+    <div class="field">
+      <label class="block"
+        >Time Tracked - {{ editedTask.minutesTracked }}m</label
+      >
+      <div class="grid">
+        <div class="col-6">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">Hours</span>
+            <input
+              type="text"
+              id="time_tracked"
+              pInputText
+              required
+              disabled
+              [ngModel]="getHours()"
+            />
+          </div>
+
+          <div class="p-inputgroup mt-3">
+            <input type="number" placeholder="Hours" pInputText #addHours />
+            <button type="button" pButton (click)="onAddHours()">
+              <span class="pi pi-plus"></span>
+            </button>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">Minutes</span>
+            <input
+              type="text"
+              id="time_tracked"
+              pInputText
+              required
+              disabled
+              [ngModel]="getMinutes()"
+            />
+          </div>
+
+          <div class="p-inputgroup mt-3">
+            <input type="number" placeholder="Minutes" pInputText #addMinutes />
+            <button type="button" pButton (click)="onAddMinutes()">
+              <span class="pi pi-plus"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="field">
+      <label class="block">Tags</label>
+      <app-tag-list
+        [selectedTags]="editedTask.tags"
+        (selectedTagsChanged)="selectedTagsChanged($event)"
+      ></app-tag-list>
+    </div>
+  </div>
+</div>
+
+<!-- <button pButton type="button" class="mt-2" (click)="onSave()">Save Task</button> -->

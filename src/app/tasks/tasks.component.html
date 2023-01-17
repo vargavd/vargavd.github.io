@@ -1,0 +1,6 @@
+<h1>Tasks</h1>
+
+<app-task-list
+  [tasks]="tasks"
+  (taskDeletedEvent)="removeTask($event)"
+></app-task-list>

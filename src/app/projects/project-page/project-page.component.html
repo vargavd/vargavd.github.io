@@ -1,0 +1,95 @@
+<div class="grid">
+  <div class="col-8">
+    <div class="flex justify-content-between align-items-center">
+      <h1>{{ project.title }}</h1>
+
+      <p-button
+        icon="pi pi-pencil"
+        class="edit-task pl-2"
+        styleClass="p-button-sm"
+        (click)="clickOnEditProject()"
+      >
+      </p-button>
+    </div>
+
+    <div class="project-description">
+      {{ project.description }}
+    </div>
+
+    <h2>NOT STARTED TASKS</h2>
+    <app-task-list [tasks]="project.getNotStartedTasks()"></app-task-list>
+
+    <h2>IM PROGRESS TASKS</h2>
+    <app-task-list [tasks]="project.getInProgressTasks()"></app-task-list>
+
+    <h2>FINISHED TASKS</h2>
+    <app-task-list [tasks]="project.getFinishedTasks()"></app-task-list>
+  </div>
+  <div class="col-3 col-offset-1">
+    <div
+      class="surface-overlay surface-border border-solid border-1 border-round-sm p-3 mt-4"
+    >
+      <div class="item-property">
+        <label class="font-bold mb-1 block">Tags</label>
+        <div class="text-xs">
+          <p-tag
+            *ngFor="let tag of project.tags"
+            [value]="tag"
+            severity="info"
+            styleClass="m-1"
+            icon="pi pi-tag"
+          ></p-tag>
+        </div>
+      </div>
+
+      <div class="item-property pt-3 mt-3">
+        <label class="font-bold mb-1 block">All time tracked </label>
+        <div class="text-xs">{{ project.getTimeTracked() }}</div>
+      </div>
+
+      <div class="item-property pt-3 mt-3">
+        <label class="font-bold mb-1 block">Tasks </label>
+        <div class="text-xs">
+          <div>
+            <strong>All:</strong>
+            {{ project.tasks.length }}
+          </div>
+          <div class="flex">
+            <strong>
+              <app-status-indicator
+                [status]="taskStatuses.FINISHED"
+                [colorLabel]="true"
+              ></app-status-indicator> </strong
+            >:
+            {{ project.getFinishedTasks().length }}
+          </div>
+          <div class="flex">
+            <strong>
+              <app-status-indicator
+                [status]="taskStatuses.IN_PROGRESS"
+                [colorLabel]="true"
+              ></app-status-indicator> </strong
+            >:
+            {{ project.getInProgressTasks().length }}
+          </div>
+          <div class="flex">
+            <strong>
+              <app-status-indicator
+                [status]="taskStatuses.NOT_STARTED"
+                [colorLabel]="true"
+              ></app-status-indicator> </strong
+            >:
+            {{ project.getNotStartedTasks().length }}
+          </div>
+
+          <p-chart
+            type="pie"
+            [data]="chartData"
+            [options]="chartOptions"
+            class="block mt-2"
+          ></p-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

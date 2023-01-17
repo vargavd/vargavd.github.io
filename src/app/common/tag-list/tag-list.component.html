@@ -1,0 +1,11 @@
+<div class="tag-list">
+  <p-toggleButton
+    *ngFor="let tagState of tagStates"
+    [onLabel]="tagState.tag"
+    [offLabel]="tagState.tag"
+    onIcon="pi pi-check"
+    offIcon="pi pi-stop"
+    [(ngModel)]="tagState.checked"
+    (onChange)="tagsChanged()"
+  ></p-toggleButton>
+</div>

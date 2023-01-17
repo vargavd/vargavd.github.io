@@ -1,0 +1,37 @@
+<p-card
+  class="project"
+  styleClass="p-card-shadow"
+  (click)="clickOnProjectCard()"
+>
+  <ng-template pTemplate="header">
+    <img alt="Card" src="../../../assets/imgs/card-bc.png" />
+  </ng-template>
+
+  <ng-template pTemplate="title">
+    {{ project.title }}
+  </ng-template>
+
+  {{ project.getExcerpt() }}
+
+  <div class="card-property pt-1 mt-3 text-xs">
+    <label class="font-bold">Tasks (finished/all) </label>
+    <div>
+      {{ project.getFinishedTasks().length + "/" + project.tasks.length }}
+    </div>
+  </div>
+
+  <div class="card-property pt-1 mt-2 text-xs">
+    <label class="font-bold">All time tracked </label>
+    <div>{{ project.getTimeTracked() }}</div>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <p-tag
+      *ngFor="let tag of project.tags"
+      [value]="tag"
+      severity="info"
+      styleClass="m-1"
+      icon="pi pi-tag"
+    ></p-tag>
+  </ng-template>
+</p-card>

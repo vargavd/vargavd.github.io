@@ -1,0 +1,11 @@
+<div
+  [ngClass]="
+    'status-indicator ' +
+    getStatus('-').toLowerCase() +
+    ' ' +
+    getColorLabelClass()
+  "
+>
+  <span [ngClass]="'text-xs pi ' + getIconClass()"></span>
+  {{ getStatus(" ") }}
+</div>

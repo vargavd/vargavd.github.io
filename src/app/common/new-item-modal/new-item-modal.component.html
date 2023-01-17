@@ -1,0 +1,61 @@
+<p-dialog
+  [header]="
+    'New ' + itemType.charAt(0).toUpperCase() + itemType.slice(1).toLowerCase()
+  "
+  [visible]="modalVisible"
+  [style]="{ width: '50vw' }"
+  [closable]="false"
+  modal="true"
+>
+  <div class="field">
+    <label for="title" class="block">Title</label>
+    <input
+      type="text"
+      id="title"
+      pInputText
+      required
+      name="title"
+      [(ngModel)]="title"
+      #titleInput="ngModel"
+    />
+    <div
+      *ngIf="titleInput.invalid && titleInput.touched"
+      class="surface-700 text-red-600 p-2 mt-2"
+    >
+      Please fill out the title!
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Description</label>
+    <textarea
+      pInputTextarea
+      [(ngModel)]="description"
+      #descriptionInput="ngModel"
+      name="description"
+      [style]="{ width: '100%' }"
+      required
+      rows="3"
+    ></textarea>
+
+    <div
+      *ngIf="descriptionInput.invalid && descriptionInput.touched"
+      class="surface-700 text-red-600 p-2 mt-2"
+    >
+      Please fill out the description!
+    </div>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <div class="flex justify-content-between">
+      <p-button
+        icon="pi pi-times"
+        (click)="onCancel()"
+        label="Cancel"
+        styleClass="p-button-text"
+      ></p-button>
+
+      <p-button icon="pi pi-check" (click)="onSave()" label="Add"></p-button>
+    </div>
+  </ng-template>
+</p-dialog>

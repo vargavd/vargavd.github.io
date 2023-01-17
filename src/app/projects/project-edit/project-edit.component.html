@@ -1,0 +1,75 @@
+<div class="flex justify-content-between align-items-center">
+  <h1>
+    Edit {{ project.title }}
+    <i
+      class="pi pi-info-circle text-2xl text-primary cursor-pointer"
+      pTooltip="Saving is instantaneous for title, description and tags"
+      tooltipPosition="bottom"
+    ></i>
+  </h1>
+
+  <p-button
+    icon="pi pi-arrow-circle-left"
+    class="remove-task"
+    [label]="project.title"
+    styleClass="p-button-text p-button-lg"
+    (click)="clickOnBackToProject()"
+  >
+  </p-button>
+</div>
+
+<div class="field">
+  <label for="title" class="block">Title</label>
+  <input
+    type="text"
+    id="title"
+    pInputText
+    required
+    [(ngModel)]="project.title"
+  />
+</div>
+
+<div class="field">
+  <label>Description</label>
+  <textarea
+    pInputTextarea
+    [(ngModel)]="project.description"
+    rows="6"
+  ></textarea>
+</div>
+
+<div class="field">
+  <label class="block">Tags</label>
+  <app-tag-list
+    [selectedTags]="project.tags"
+    (selectedTagsChanged)="selectedTagsChanged($event)"
+  ></app-tag-list>
+</div>
+
+<app-new-item-modal
+  [modalVisible]="newTaskModalVisible"
+  (closeModal)="newTaskModalVisible = false"
+  (cancelModal)="newTaskModalVisible = false"
+  itemType="TASK"
+  [projectId]="project.id"
+></app-new-item-modal>
+
+<div class="flex justify-content-between align-items-center mt-7">
+  <h2>NOT STARTED TASKS</h2>
+
+  <p-button
+    icon="pi pi-plus"
+    label="Add Task"
+    class="ml-2"
+    styleClass="p-button-sm"
+    (click)="clickOnAddTask()"
+  >
+  </p-button>
+</div>
+<app-task-list [tasks]="project.getNotStartedTasks()"></app-task-list>
+
+<h2 class="mt-7">IM PROGRESS TASKS</h2>
+<app-task-list [tasks]="project.getInProgressTasks()"></app-task-list>
+
+<h2 class="mt-7">FINISHED TASKS</h2>
+<app-task-list [tasks]="project.getFinishedTasks()"></app-task-list>

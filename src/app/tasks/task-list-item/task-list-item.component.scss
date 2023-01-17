@@ -1,0 +1,17 @@
+:host ::ng-deep {
+  p-card.task {
+    .p-card {
+      position: relative;
+      padding-bottom: 35px;
+
+      .p-card-footer {
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        margin-left: -24px;
+        padding: 10px 1.5rem;
+        background-color: var(--surface-0);
+      }
+    }
+  }
+}

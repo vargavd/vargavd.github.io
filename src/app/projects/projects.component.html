@@ -1,0 +1,25 @@
+<div class="flex justify-content-between align-items-center">
+  <h1>Projects</h1>
+
+  <p-button
+    icon="pi pi-plus"
+    (click)="newProjectModalVisible = true"
+    label="Add"
+  ></p-button>
+</div>
+
+<!-- <p *ngFor="let project of projects">{{ project.title }}</p> -->
+<div class="projects card-list">
+  <app-project-list-item
+    *ngFor="let project of projects"
+    [project]="project"
+    class="list-item"
+  >
+  </app-project-list-item>
+</div>
+
+<app-new-item-modal
+  [modalVisible]="newProjectModalVisible"
+  (cancelModal)="newProjectModalVisible = false"
+  itemType="PROJECT"
+></app-new-item-modal>

@@ -1,0 +1,5 @@
+.item-property {
+  & + .item-property {
+    border-top: 1px solid var(--surface-100);
+  }
+}

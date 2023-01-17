@@ -1,0 +1,75 @@
+<h1>User Details</h1>
+
+<div class="field">
+  <label for="userName" class="block">Username</label>
+  <div class="p-input-icon-left">
+    <i class="pi pi-user"></i>
+    <input
+      type="text"
+      id="userName"
+      pInputText
+      required
+      [(ngModel)]="user.userName"
+    />
+  </div>
+</div>
+
+<div class="grid">
+  <div class="col-6 field">
+    <label for="firstName" class="block">First Name</label>
+    <input
+      type="text"
+      id="firstName"
+      pInputText
+      required
+      [(ngModel)]="user.firstName"
+    />
+  </div>
+
+  <div class="col-6 field">
+    <label for="lastName" class="block">Last Name</label>
+    <input
+      type="text"
+      id="lastName"
+      pInputText
+      required
+      [(ngModel)]="user.lastName"
+    />
+  </div>
+</div>
+
+<div class="grid">
+  <div class="col-6 field">
+    <label for="email" class="block">Email</label>
+    <div class="p-input-icon-left">
+      <i class="pi pi-at"></i>
+      <input
+        type="email"
+        name="email"
+        pInputText
+        required
+        [(ngModel)]="user.email"
+      />
+    </div>
+  </div>
+
+  <div class="col-6 field">
+    <label for="devLevel" class="block">Developer Level</label>
+    <p-dropdown [options]="devLevels" (onChange)="devLevelSelected($event)">
+    </p-dropdown>
+  </div>
+</div>
+
+<div class="field">
+  <label>About</label>
+  <textarea
+    pInputTextarea
+    [(ngModel)]="user.about"
+    [style]="{ width: '100%' }"
+    rows="3"
+  ></textarea>
+</div>
+
+<button pButton type="button" class="mt-2" (click)="onSave()">
+  Save Profile
+</button>

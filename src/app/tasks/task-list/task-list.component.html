@@ -1,0 +1,10 @@
+<p-confirmPopup></p-confirmPopup>
+
+<div class="tasks card-list">
+  <app-task-list-item
+    *ngFor="let task of tasks"
+    [task]="task"
+    class="list-item"
+    (deleteTask)="deleteTaskHandler($event)"
+  ></app-task-list-item>
+</div>
